@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Container } from '$components/container';
-import { CounterWidgetWrong } from './components/counter-widget';
+import { CounterWidget } from './components/counter-widget';
 import { TextWidgetWrong } from './components/text-widget';
 import { ColorWidgetWrong } from './components/color-widget';
 
@@ -27,7 +26,7 @@ function Application() {
       </section>
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <CounterWidgetWrong />
+        <CounterWidget />
 
         <TextWidgetWrong />
 

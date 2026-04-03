@@ -1,15 +1,20 @@
 import { Card } from '$components/card';
 import { Button } from '$components/button';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-export function CounterWidgetWrong() {
-  const [count, setCount] = useState(0)
+const useCounter = () => {
+  const [count, setCount] = useState(0);
+  const incrementCount = useCallback(() => setCount((prevCount) => prevCount + 1), [count]);
+  const decrementCount = useCallback(() => setCount((prevCount) => prevCount - 1), [count]);
+  const resetCount = useCallback(() => setCount(0), []);
+
+  return useMemo(() => ({ count, incrementCount, decrementCount, resetCount }), [count, incrementCount, decrementCount, resetCount]);
+}
+export function CounterWidget() {
   console.log('CounterWidget rendered');
 
   // Every widget needs its own set of handlers
-  const incrementCount = () => setCount(count + 1);
-  const decrementCount = () => setCount(count - 1);
-  const resetCount = () => setCount(0);
+  const { count, incrementCount, decrementCount, resetCount } = useCounter();
 
   return (
     <Card className="p-6">
