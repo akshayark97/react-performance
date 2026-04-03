@@ -7,14 +7,6 @@ import { ColorWidgetWrong } from './components/color-widget';
 function Application() {
   // ANTI-PATTERN: All widget state is lifted to the parent
   // Even though these widgets are completely independent!
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState('');
-  const [color, setColor] = useState('#3b82f6');
-
-  // Every widget needs its own set of handlers
-  const incrementCount = () => setCount(count + 1);
-  const decrementCount = () => setCount(count - 1);
-  const resetCount = () => setCount(0);
 
   return (
     <Container className="my-8 space-y-8">
@@ -35,22 +27,11 @@ function Application() {
       </section>
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <CounterWidgetWrong
-          count={count}
-          onIncrement={incrementCount}
-          onDecrement={decrementCount}
-          onReset={resetCount}
-        />
+        <CounterWidgetWrong />
 
-        <TextWidgetWrong
-          text={text}
-          onTextChange={setText}
-        />
+        <TextWidgetWrong />
 
-        <ColorWidgetWrong
-          color={color}
-          onColorChange={setColor}
-        />
+        <ColorWidgetWrong />
       </section>
 
       <section className="rounded-md bg-slate-100 p-6 dark:bg-slate-800">

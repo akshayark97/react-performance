@@ -1,6 +1,7 @@
 import { Card } from '$components/card';
 import { Textarea } from '$components/textarea';
 import { Button } from '$components/button';
+import { useState } from 'react';
 
 // WRONG: Receiving state and setter as props
 interface TextWidgetWrongProps {
@@ -8,8 +9,10 @@ interface TextWidgetWrongProps {
   onTextChange: (text: string) => void;
 }
 
-export function TextWidgetWrong({ text, onTextChange }: TextWidgetWrongProps) {
+export function TextWidgetWrong() {
   console.log('TextWidget rendered');
+
+  const [text, setText] = useState('')
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const charCount = text.length;
@@ -26,7 +29,7 @@ export function TextWidgetWrong({ text, onTextChange }: TextWidgetWrongProps) {
       <Textarea
         label="Enter some text"
         value={text}
-        onChange={(e) => onTextChange(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
         rows={4}
         placeholder="Start typing..."
       />
@@ -37,7 +40,7 @@ export function TextWidgetWrong({ text, onTextChange }: TextWidgetWrongProps) {
       </div>
 
       <div className="mt-4">
-        <Button onClick={() => onTextChange('')} variant="secondary" size="small">
+        <Button onClick={() => setText('')} variant="secondary" size="small">
           Clear
         </Button>
       </div>

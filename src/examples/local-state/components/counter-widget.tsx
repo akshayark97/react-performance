@@ -1,16 +1,15 @@
 import { Card } from '$components/card';
 import { Button } from '$components/button';
+import { useState } from 'react';
 
-// WRONG: Receiving state and setters as props
-interface CounterWidgetWrongProps {
-  count: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-  onReset: () => void;
-}
-
-export function CounterWidgetWrong({ count, onIncrement, onDecrement, onReset }: CounterWidgetWrongProps) {
+export function CounterWidgetWrong() {
+  const [count, setCount] = useState(0)
   console.log('CounterWidget rendered');
+
+  // Every widget needs its own set of handlers
+  const incrementCount = () => setCount(count + 1);
+  const decrementCount = () => setCount(count - 1);
+  const resetCount = () => setCount(0);
 
   return (
     <Card className="p-6">
@@ -22,17 +21,17 @@ export function CounterWidgetWrong({ count, onIncrement, onDecrement, onReset }:
       </p>
 
       <div className="flex items-center justify-center space-x-4">
-        <Button onClick={onDecrement} variant="secondary">
+        <Button onClick={decrementCount} variant="secondary">
           −
         </Button>
         <span className="text-3xl font-bold text-slate-900 dark:text-slate-100">{count}</span>
-        <Button onClick={onIncrement} variant="secondary">
+        <Button onClick={incrementCount} variant="secondary">
           +
         </Button>
       </div>
 
       <div className="mt-4 flex justify-center">
-        <Button onClick={onReset} variant="secondary" size="small">
+        <Button onClick={resetCount} variant="secondary" size="small">
           Reset
         </Button>
       </div>
