@@ -2,6 +2,7 @@ import { Badge } from '$components/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '$components/card';
 import { Progress } from '$components/progress';
 import { Tag } from '$components/tag';
+import { memo } from 'react';
 import type Pokedex from '../pokedex.json';
 
 type PokemonRecord = (typeof Pokedex)[number];
@@ -27,7 +28,7 @@ const typeColors: Record<string, 'neutral' | 'success' | 'warning' | 'error' | '
   Steel: 'neutral',
 };
 
-export const Pokemon = ({
+export const Pokemon = memo(({
   id,
   name,
   type,
@@ -108,4 +109,6 @@ export const Pokemon = ({
       </CardContent>
     </Card>
   );
-};
+});
+
+Pokemon.displayName = 'Pokemon';
